@@ -5,6 +5,10 @@ if ! builtin functions --query __zoxide_cd_internal
         alias __zoxide_cd_internal='builtin cd'
     end
 end
+function __zoxide_hook --on-variable PWD
+    test -z "$fish_private_mode"
+    and command zoxide add -- (__zoxide_pwd)
+end
 if test -z $__zoxide_z_prefix
     set __zoxide_z_prefix 'z!'
 end
